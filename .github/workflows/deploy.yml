@@ -16,17 +16,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Remplacez par '16' ou '18'
+          node-version: '20'
 
       - name: Install dependencies
-        run: |
-          npm install
-          ls -al
+        run: npm install
 
       - name: Build project
-        run: |
-          npm run build
-          ls -al
+        run: npm run build
 
       - name: Deploy to OVH
         env:
