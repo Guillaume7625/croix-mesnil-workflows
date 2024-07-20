@@ -1,0 +1,35 @@
+name: Deploy to OVH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to OVH
+        env:
+          OVH_API_KEY: ${{ secrets.OVH_API_KEY }}
+          OVH_API_SECRET: ${{ secrets.OVH_API_SECRET }}
+          OVH_CONSUMER_KEY: ${{ secrets.OVH_CONSUMER_KEY }}
+        run: |
+          echo "Deploying to OVH..."
+          # Ajouter les commandes de déploiement spécifiques à OVH ici
+          ls -al
